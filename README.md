@@ -9,8 +9,16 @@ This Github Action runs [Checkov](https://github.com/bridgecrewio/checkov) again
 ## Example usage
 
 ```yaml
-steps:
-  - uses: actions/checkout@v2
-  - uses: cmavr8/checkov-action@v1
+jobs:
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Run Checkov action
+        id: checkov
+        uses: cmavr8/checkov-action@v2
 ```
-Note that this example uses a static version (`v1`).
+Note that this example uses a static version (`v2`), but you could also use `master`..
