@@ -1,0 +1,6 @@
+# action.yml
+name: 'Checko Github Action'
+description: 'Run Checkov against IaC'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
