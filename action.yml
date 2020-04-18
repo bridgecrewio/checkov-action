@@ -1,7 +1,7 @@
 # action.yml
-name: 'Checko Github Action'
+name: 'Checkov Github Action'
 author: 'Chris Mavrakis'
-description: 'Run Checkov against IaC'
+description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged Github Action.'
 branding:
   icon: 'shield'
   color: 'purple'
