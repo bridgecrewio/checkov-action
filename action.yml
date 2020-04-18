@@ -2,6 +2,9 @@
 name: 'Checko Github Action'
 author: 'Chris Mavrakis'
 description: 'Run Checkov against IaC'
+branding:
+  icon: 'shield'
+  color: 'purple'
 runs:
   using: 'docker'
   image: 'Dockerfile'
