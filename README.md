@@ -23,4 +23,4 @@ jobs:
         id: checkov
         uses: cmavr8/checkov-action@master
 ```
-Note that this example uses the latest version (`master`) but you could also use `static a version (e.g. `v3`).
+Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
