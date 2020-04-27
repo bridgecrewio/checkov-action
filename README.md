@@ -1,12 +1,8 @@
-# Checkov IaC security scan action
+# Checkov Github action
 
-This Github Action runs [Checkov](https://github.com/bridgecrewio/checkov) against an Infrastructure-as-Code repository. Checkov performs static security analysis of Terraform & CloudFormation Iaac.
+This Github Action runs [Checkov](https://github.com/bridgecrewio/checkov) against an Infrastructure-as-Code repository. 
+Checkov performs static security analysis of Terraform & CloudFormation Infrastructure code .
 
-## Inputs
-(None) 
-
-## Outputs
-(None)
 
 ## Example usage
 
