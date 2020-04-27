@@ -21,6 +21,6 @@ jobs:
 
       - name: Run Checkov action
         id: checkov
-        uses: cmavr8/checkov-action@master
+        uses: bridgecrewio/checkov-action@master
 ```
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
