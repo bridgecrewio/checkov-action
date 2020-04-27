@@ -22,5 +22,7 @@ jobs:
       - name: Run Checkov action
         id: checkov
         uses: bridgecrewio/checkov-action@master
+        with:
+          directory: example/
 ```
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
