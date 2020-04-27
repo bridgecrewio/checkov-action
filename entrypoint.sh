@@ -1,2 +1,2 @@
 #!/bin/sh -l
-checkov -d .
+checkov -d $1
