@@ -6,6 +6,7 @@ inputs:
   directory:
     description: 'directory with infrastructure code to scan'
     default: '.'
+    required: false
 branding:
   icon: 'shield'
   color: 'purple'
