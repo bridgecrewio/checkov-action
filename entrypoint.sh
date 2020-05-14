@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 # Actions pass inputs as $INPUT_<input name> environmet variables
 #
 [[ ! -z "$INPUT_CHECK" ]] && CHECK_FLAG="--check $INPUT_CHECK"
