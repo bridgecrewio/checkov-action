@@ -20,5 +20,6 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: example/
+          skip_check: CKV_AWS_1 # optional: skip a specific check_id
 ```
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
