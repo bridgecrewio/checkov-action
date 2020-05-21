@@ -7,6 +7,12 @@ inputs:
     description: 'directory with infrastructure code to scan'
     default: '.'
     required: false
+  check:
+    description: 'Run scan only on a specific check identifier (comma separated)'
+    required: false
+  skip_check:
+    description: 'Run scan on all checks but a specific check identifier (comma separated)'
+    required: false
 branding:
   icon: 'shield'
   color: 'purple'
@@ -15,3 +21,5 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.directory }}
+    - ${{ inputs.check }}
+    - ${{ inputs.skip_check }}
