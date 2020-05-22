@@ -1,6 +1,6 @@
 # Checkov Github action
 
-This Github Action runs [Checkov](https://github.com/bridgecrewio/checkov) against an Infrastructure-as-Code repository. 
+This Github Action runs [Checkov](https://github.com/bridgecrewio/checkov) against an Infrastructure-as-Code repository.
 Checkov performs static security analysis of Terraform & CloudFormation Infrastructure code .
 
 
@@ -13,7 +13,7 @@ jobs:
     name: checkov-action
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v10
+        uses: actions/checkout@v2
 
       - name: Run Checkov action
         id: checkov
@@ -21,5 +21,6 @@ jobs:
         with:
           directory: example/
           skip_check: CKV_AWS_1 # optional: skip a specific check_id
+          quiet: true # optional: display only failed checks
 ```
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).

@@ -13,6 +13,9 @@ inputs:
   skip_check:
     description: 'Run scan on all checks but a specific check identifier (comma separated)'
     required: false
+  quiet:
+    description: 'display only failed checks'
+    required: false
 branding:
   icon: 'shield'
   color: 'purple'
@@ -23,3 +26,4 @@ runs:
     - ${{ inputs.directory }}
     - ${{ inputs.check }}
     - ${{ inputs.skip_check }}
+    - ${{ inputs.quiet }}
