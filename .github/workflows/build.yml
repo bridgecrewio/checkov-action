@@ -12,7 +12,7 @@ jobs:
         run: |
           # update checkov version
           checkov_version=$(curl -sL https://api.github.com/repos/bridgecrewio/checkov/tags | jq -r '.[0]["name"]' )
-          echo "checkov=='$checkov_version'" > 'requirements.txt'
+          echo "checkov==$checkov_version" > 'requirements.txt'
           echo "version = '$checkov_version'"
 
           # create a release
