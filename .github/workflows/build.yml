@@ -20,9 +20,9 @@ jobs:
           git config --global user.email 'action@github.com'
           git fetch --tags
           git commit -am "update checkov version to '$checkov_version'"
-          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-          echo "latest tag: $latest_tag"
-          new_tag=$latest_tag.$checkov_version
-          git tag $new_tag
-          git push origin $new_tag
+          git push
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix:  ''
 
