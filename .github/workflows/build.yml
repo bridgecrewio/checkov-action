@@ -21,8 +21,8 @@ jobs:
           git fetch --tags
           git commit -am "update checkov version to '$checkov_version'"
           git push
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
-        with:
-          tag-prefix:  'v'
-
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
