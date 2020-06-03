@@ -2,8 +2,10 @@
 #FROM alpine:3.10
 FROM python
 
+COPY requirements.txt /requirements.txt
+
 # Install checkov
-RUN pip install -r requirements.txt
+RUN pip install -r /requirements.txt
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
