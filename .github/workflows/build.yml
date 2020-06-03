@@ -13,15 +13,10 @@ jobs:
           checkov_version=$(curl -sL https://api.github.com/repos/bridgecrewio/checkov/tags | jq -r '.[0]["name"]' )
           echo "checkov=='$checkov_version'" > 'requirements.txt'
           echo "version = '$checkov_version'"
-      - name: Check for modified files
-        id: git-check
-        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
-      - name: Commit latest release version
-        if: steps.git-check.outputs.modified == 'true'
-        run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git commit -am "New release version"
-          new_tag=$(curl -sL https://api.github.com/repos/bridgecrewio/checkov-action/tags | jq -r '.[0]["name"]' )
+          new_tag=$checkov_version
           git tag $new_tag
           git push origin $new_tag
+
