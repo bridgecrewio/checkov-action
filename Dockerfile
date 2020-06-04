@@ -1,6 +1,6 @@
 # Container image that runs your code
 #FROM alpine:3.10
-FROM python
+FROM python:slim
 
 COPY requirements.txt /requirements.txt
 
