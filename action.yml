@@ -16,6 +16,9 @@ inputs:
   quiet:
     description: 'display only failed checks'
     required: false
+  framework:
+    description: 'run only on a specific infrastructure'
+    required: false
 branding:
   icon: 'shield'
   color: 'purple'
