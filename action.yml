@@ -30,3 +30,4 @@ runs:
     - ${{ inputs.check }}
     - ${{ inputs.skip_check }}
     - ${{ inputs.quiet }}
+    - ${{ inputs.framework }}
