@@ -19,6 +19,13 @@ inputs:
   framework:
     description: 'run only on a specific infrastructure'
     required: false
+  external_checks_dirs:
+    description: 'comma separated list of external (custom) checks directories'
+    required: false
+  external_checks_repos:
+    description: 'comma separated list of external (custom) checks repositories'
+    required: false
+
 branding:
   icon: 'shield'
   color: 'purple'
@@ -31,3 +38,5 @@ runs:
     - ${{ inputs.skip_check }}
     - ${{ inputs.quiet }}
     - ${{ inputs.framework }}
+    - ${{ inputs.external_checks_dirs }}
+    - ${{ inputs.external_checks_repos }}
