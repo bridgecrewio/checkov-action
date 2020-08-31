@@ -31,4 +31,4 @@ cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
 
 echo "::add-matcher::checkov-problem-matcher.json"
 echo "running checkov on directory: $1"
-echo "checkov -d $INPUT_DIRECTORY $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG"
+checkov -d $INPUT_DIRECTORY $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG
