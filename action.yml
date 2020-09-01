@@ -1,5 +1,5 @@
 # action.yml
-name: 'Checkov Github Action'
+name: 'libertyy test Checkov Github Action'
 author: 'Chris Mavrakis'
 description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged Github Action.'
 inputs:
