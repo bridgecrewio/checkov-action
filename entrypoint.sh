@@ -35,7 +35,7 @@ cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
 
 echo "::add-matcher::checkov-problem-matcher.json"
 
-if [ ! -z "$GITHUB_HEAD_REF" ]; then
+if [ -z "$GITHUB_HEAD_REF" ]; then
   # No different commits, not a PR
   # Check everything, not just a PR diff (there is no PR diff in this context).
   # NOTE: this file scope may need to be expanded or refined further.
