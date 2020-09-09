@@ -5,7 +5,7 @@
 [[ ! -z "$INPUT_SKIP_CHECK" ]] && SKIP_CHECK_FLAG="--skip-check $INPUT_SKIP_CHECK"
 [[ ! -z "$INPUT_QUIET" ]] && QUIET_FLAG="--quiet"
 [[ ! -z "$INPUT_FRAMEWORK" ]] && FRAMEWORK_FLAG="--framework $INPUT_FRAMEWORK"
-
+set -x
 RC=0 #return code
 
 CHECKOV_REPORT=${INPUT_CHECKOV_REPORT:-"$HOME/report.out"}
