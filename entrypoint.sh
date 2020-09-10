@@ -49,9 +49,9 @@ else
   git fetch ${GITHUB_HEAD_REF/#/'origin '} #&>/dev/null
   BASE_REF=$(git rev-parse ${GITHUB_BASE_REF/#/'origin/'})
   HEAD_REF=$(git rev-parse ${GITHUB_HEAD_REF/#/'origin/'})
-  DIFF_FILES=$(git diff --name-only $BASE_REF $HEAD_REF)
+  DIFF_FILES=$(git diff --name-only $BASE_REF $HEAD_REF | tr '\n' ' ')
 
-  IFS='\n' read -r -a files2scan <<< "$DIFF_FILES"
+  IFS=' ' read -r -a files2scan <<< "$DIFF_FILES"
 
   SCAN_FILES_FLAG=""
   if [ -z "$DIFF_FILES" ]; then
