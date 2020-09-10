@@ -49,14 +49,17 @@ else
   git fetch ${GITHUB_HEAD_REF/#/'origin '} #&>/dev/null
   BASE_REF=$(git rev-parse ${GITHUB_BASE_REF/#/'origin/'})
   HEAD_REF=$(git rev-parse ${GITHUB_HEAD_REF/#/'origin/'})
-  FILES=$(git diff --name-only $BASE_REF $HEAD_REF | tr '\n' ' ' )
+  DIFF_FILES=$(git diff --name-only $BASE_REF $HEAD_REF)
+
+  IFS='\n' read -r -a files2scan <<< "$DIFF_FILES"
+
   SCAN_FILES_FLAG=""
-  if [ -z "$FILES" ]; then
+  if [ -z "$DIFF_FILES" ]; then
     echo "No files to scan"
     RC=0
   else
-    echo "running checkov on files: $FILES"
-    for f in "$FILES"
+    echo "running checkov on files: $DIFF_FILES"
+    for f in "${files2scan[@]}"
     do
       SCAN_FILES_FLAG="$SCAN_FILES_FLAG -f $f"
     done
