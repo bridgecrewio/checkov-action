@@ -43,6 +43,7 @@ if [ -z "$GITHUB_HEAD_REF" ]; then
   checkov -d $INPUT_DIRECTORY $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG
   RC=$?
 else
+  pushd $GITHUB_WORKSPACE &>/dev/null
   git fetch ${GITHUB_BASE_REF/#/'origin '} &>/dev/null
   git fetch ${GITHUB_HEAD_REF/#/'origin '} &>/dev/null
   BASE_REF=$(git rev-parse ${GITHUB_BASE_REF/#/'origin/'})
