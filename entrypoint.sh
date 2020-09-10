@@ -44,6 +44,7 @@ if [ -z "$GITHUB_HEAD_REF" ]; then
   RC=$?
 else
   pushd $GITHUB_WORKSPACE #&>/dev/null
+  find ./
   git fetch ${GITHUB_BASE_REF/#/'origin '} #&>/dev/null
   git fetch ${GITHUB_HEAD_REF/#/'origin '} #&>/dev/null
   BASE_REF=$(git rev-parse ${GITHUB_BASE_REF/#/'origin/'})
