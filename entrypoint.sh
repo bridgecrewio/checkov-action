@@ -62,8 +62,7 @@ else
     for f in "${files2scan[@]}"
     do
       SCAN_FILES_FLAG="$SCAN_FILES_FLAG -f $f"
-    done
-    pushd $INPUT_DIRECTORY
+    done  
     checkov $SCAN_FILES_FLAG $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG
     RC=$?
   fi
