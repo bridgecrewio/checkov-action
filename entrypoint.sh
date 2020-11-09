@@ -5,7 +5,7 @@
 [[ ! -z "$INPUT_SKIP_CHECK" ]] && SKIP_CHECK_FLAG="--skip-check $INPUT_SKIP_CHECK"
 [[ ! -z "$INPUT_QUIET" ]] && QUIET_FLAG="--quiet"
 [[ ! -z "$INPUT_FRAMEWORK" ]] && FRAMEWORK_FLAG="--framework $INPUT_FRAMEWORK"
-set -x
+
 RC=0 #return code
 
 CHECKOV_REPORT=${INPUT_CHECKOV_REPORT:-"$HOME/report.out"}
@@ -35,6 +35,8 @@ cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
 
 echo "::add-matcher::checkov-problem-matcher.json"
 
+echo $(checkov --version )
+
 if [ -z "$GITHUB_HEAD_REF" ]; then
   # No different commits, not a PR
   # Check everything, not just a PR diff (there is no PR diff in this context).
@@ -62,7 +64,7 @@ else
     for f in "${files2scan[@]}"
     do
       SCAN_FILES_FLAG="$SCAN_FILES_FLAG -f $f"
-    done  
+    done
     checkov $SCAN_FILES_FLAG $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG
     RC=$?
   fi
