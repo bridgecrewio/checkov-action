@@ -25,10 +25,13 @@ if [ ! -z "$INPUT_EXTERNAL_CHECKS_REPOS" ]; then
   done
 fi
 
-
+echo "input_soft_fail:$INPUT_SOFT_FAIL"
 matcher_path=`pwd`/checkov-problem-matcher.json
-
-cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
+if [ -z "$INPUT_SOFT_FAIL"]; then
+    cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
+    else
+    cp /usr/local/lib/checkov-problem-matcher-softfail.json "$matcher_path"
+fi
 
 echo "::add-matcher::checkov-problem-matcher.json"
 echo "running checkov on directory: $1"
