@@ -25,6 +25,7 @@ jobs:
           directory: example/
           skip_check: CKV_AWS_1 # optional: skip a specific check_id
           quiet: true # optional: display only failed checks
+          soft_fail: true # optional: do not return an error code if there are failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
 ```
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
