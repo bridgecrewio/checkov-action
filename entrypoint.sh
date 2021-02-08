@@ -27,7 +27,7 @@ fi
 
 echo "input_soft_fail:$INPUT_SOFT_FAIL"
 matcher_path=`pwd`/checkov-problem-matcher.json
-if [ -z "$INPUT_SOFT_FAIL"]; then
+if [ ! -z "$INPUT_SOFT_FAIL"]; then
     cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
     else
     cp /usr/local/lib/checkov-problem-matcher-softfail.json "$matcher_path"
