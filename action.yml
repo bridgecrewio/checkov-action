@@ -28,6 +28,9 @@ inputs:
   external_checks_repos:
     description: 'comma separated list of external (custom) checks repositories'
     required: false
+  output_format:
+    description: 'The format of the output. cli, json, junitxml, github_failed_only'
+    required: false
 
 branding:
   icon: 'shield'
@@ -44,3 +47,4 @@ runs:
     - ${{ inputs.framework }}
     - ${{ inputs.external_checks_dirs }}
     - ${{ inputs.external_checks_repos }}
+    - ${{ inputs.output_format }}
