@@ -3,9 +3,15 @@
 #
 [[ ! -z "$INPUT_CHECK" ]] && CHECK_FLAG="--check $INPUT_CHECK"
 [[ ! -z "$INPUT_SKIP_CHECK" ]] && SKIP_CHECK_FLAG="--skip-check $INPUT_SKIP_CHECK"
-[[ ! -z "$INPUT_QUIET" ]] && QUIET_FLAG="--quiet"
-[[ ! -z "$INPUT_SOFT_FAIL" ]] && SOFT_FAIL_FLAG="--soft-fail"
 [[ ! -z "$INPUT_FRAMEWORK" ]] && FRAMEWORK_FLAG="--framework $INPUT_FRAMEWORK"
+
+if [ ! -z "$INPUT_QUIET" ] && [ "$INPUT_QUIET" = "true" ]; then
+  QUIET_FLAG="--quiet"
+fi
+
+if [ ! -z "$INPUT_SOFT_FAIL" ] && [ "$INPUT_SOFT_FAIL" =  "true" ]; then
+  SOFT_FAIL_FLAG="--soft-fail"
+fi
 
 EXTCHECK_DIRS_FLAG=""
 if [ ! -z "$INPUT_EXTERNAL_CHECKS_DIRS" ]; then
