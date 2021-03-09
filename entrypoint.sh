@@ -3,8 +3,16 @@
 #
 [[ ! -z "$INPUT_CHECK" ]] && CHECK_FLAG="--check $INPUT_CHECK"
 [[ ! -z "$INPUT_SKIP_CHECK" ]] && SKIP_CHECK_FLAG="--skip-check $INPUT_SKIP_CHECK"
-[[ ! -z "$INPUT_QUIET" ]] && QUIET_FLAG="--quiet"
 [[ ! -z "$INPUT_FRAMEWORK" ]] && FRAMEWORK_FLAG="--framework $INPUT_FRAMEWORK"
+[[ ! -z "$INPUT_OUTPUT_FORMAT" ]] && OUTPUT_FLAG="--output $INPUT_OUTPUT_FORMAT"
+
+if [ ! -z "$INPUT_QUIET" ] && [ "$INPUT_QUIET" = "true" ]; then
+  QUIET_FLAG="--quiet"
+fi
+
+if [ ! -z "$INPUT_SOFT_FAIL" ] && [ "$INPUT_SOFT_FAIL" =  "true" ]; then
+  SOFT_FAIL_FLAG="--soft-fail"
+fi
 
 RC=0 #return code
 
@@ -28,10 +36,13 @@ if [ ! -z "$INPUT_EXTERNAL_CHECKS_REPOS" ]; then
   done
 fi
 
-
+echo "input_soft_fail:$INPUT_SOFT_FAIL"
 matcher_path=`pwd`/checkov-problem-matcher.json
-
-cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
+if [ ! -z "$INPUT_SOFT_FAIL" ]; then
+    cp /usr/local/lib/checkov-problem-matcher.json "$matcher_path"
+    else
+    cp /usr/local/lib/checkov-problem-matcher-softfail.json "$matcher_path"
+fi
 
 echo "::add-matcher::checkov-problem-matcher.json"
 
@@ -42,7 +53,7 @@ if [ -z "$GITHUB_HEAD_REF" ]; then
   # Check everything, not just a PR diff (there is no PR diff in this context).
   # NOTE: this file scope may need to be expanded or refined further.
   echo "running checkov on directory: $1"
-  checkov -d $INPUT_DIRECTORY $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG
+  checkov -d $INPUT_DIRECTORY $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $SOFT_FAIL_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG $OUTPUT_FLAG
   RC=$?
 else
   pushd $GITHUB_WORKSPACE/$INPUT_DIRECTORY #&>/dev/null
@@ -65,7 +76,7 @@ else
     do
       SCAN_FILES_FLAG="$SCAN_FILES_FLAG -f $f"
     done
-    checkov $SCAN_FILES_FLAG $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG
+    checkov $SCAN_FILES_FLAG  $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $SOFT_FAIL_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG $OUTPUT_FLAG
     RC=$?
   fi
 
@@ -73,3 +84,4 @@ fi
 
 echo "exiting script: $RC"
 exit $RC
+

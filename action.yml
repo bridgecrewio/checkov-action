@@ -16,6 +16,9 @@ inputs:
   quiet:
     description: 'display only failed checks'
     required: false
+  soft_fail:
+    description: 'do not return an error code if there are failed checks'
+    required: false
   framework:
     description: 'run only on a specific infrastructure'
     required: false
@@ -24,6 +27,9 @@ inputs:
     required: false
   external_checks_repos:
     description: 'comma separated list of external (custom) checks repositories'
+    required: false
+  output_format:
+    description: 'The format of the output. cli, json, junitxml, github_failed_only'
     required: false
 
 branding:
@@ -37,6 +43,8 @@ runs:
     - ${{ inputs.check }}
     - ${{ inputs.skip_check }}
     - ${{ inputs.quiet }}
+    - ${{ inputs.soft_fail }}
     - ${{ inputs.framework }}
     - ${{ inputs.external_checks_dirs }}
     - ${{ inputs.external_checks_repos }}
+    - ${{ inputs.output_format }}

@@ -6,7 +6,6 @@
 This Github Action runs [Checkov](https://github.com/bridgecrewio/checkov) against an Infrastructure-as-Code repository.
 Checkov performs static security analysis of Terraform & CloudFormation Infrastructure code .
 
-
 ## Example usage
 
 ```yaml
@@ -23,8 +22,12 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: example/
-          skip_check: CKV_AWS_1 # optional: skip a specific check_id
+          check: CKV_AWS_1 # optional: run only a specific check_id. can be comma separated list
+          skip_check: CKV_AWS_1 # optional: skip a specific check_id. can be comma separated list
           quiet: true # optional: display only failed checks
+          soft_fail: true # optional: do not return an error code if there are failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+          output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
 ```
+
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
