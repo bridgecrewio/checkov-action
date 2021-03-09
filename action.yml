@@ -1,7 +1,7 @@
 # action.yml
 name: 'Checkov Github Action'
-author: 'Chris Mavrakis'
-description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged Github Action.'
+author: 'Chris Mavrakis, Libertyy'
+description: 'TEST: DO NOT USE: Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged Github Action.'
 inputs:
   directory:
     description: 'directory with infrastructure code to scan'
