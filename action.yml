@@ -31,6 +31,9 @@ inputs:
   output_format:
     description: 'The format of the output. cli, json, junitxml, github_failed_only'
     required: false
+  download_external_modules:
+    description: 'download external terraform modules from public git repositories and terraform registry:true, false'
+    required: false
 
 branding:
   icon: 'shield'
@@ -48,3 +51,4 @@ runs:
     - ${{ inputs.external_checks_dirs }}
     - ${{ inputs.external_checks_repos }}
     - ${{ inputs.output_format }}
+    - ${{ inputs.download_external_modules }}

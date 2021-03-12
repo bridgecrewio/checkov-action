@@ -28,6 +28,7 @@ jobs:
           soft_fail: true # optional: do not return an error code if there are failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           output_format: json # optional: the output format, one of: cli, json, junitxml, github_failed_only
+          download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
 ```
 
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
