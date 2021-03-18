@@ -11,7 +11,7 @@ if [ ! -z "$INPUT_QUIET" ] && [ "$INPUT_QUIET" = "true" ]; then
 fi
 
 if [ ! -z "$INPUT_DOWNLOAD_EXTERNAL_MODULES" ] && [ "$INPUT_DOWNLOAD_EXTERNAL_MODULES" = "true" ]; then
-  DOWNLOAD_EXTERNAL_MODULES_FLAG="--download-external-modules"
+  DOWNLOAD_EXTERNAL_MODULES_FLAG="--download-external-modules true"
 fi
 
 if [ ! -z "$INPUT_SOFT_FAIL" ] && [ "$INPUT_SOFT_FAIL" =  "true" ]; then
