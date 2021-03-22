@@ -34,6 +34,10 @@ inputs:
   download_external_modules:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
+  log_level:
+    description: 'log level'
+    required: false
+    default: 'WARNING'
 
 branding:
   icon: 'shield'
@@ -52,3 +56,4 @@ runs:
     - ${{ inputs.external_checks_repos }}
     - ${{ inputs.output_format }}
     - ${{ inputs.download_external_modules }}
+    - ${{ inputs.log_level }}

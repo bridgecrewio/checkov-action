@@ -18,6 +18,10 @@ if [ ! -z "$INPUT_SOFT_FAIL" ] && [ "$INPUT_SOFT_FAIL" =  "true" ]; then
   SOFT_FAIL_FLAG="--soft-fail"
 fi
 
+if [ ! -z "$INPUT_LOG_LEVEL" ]; then
+  export LOG_LEVEL=$INPUT_LOG_LEVEL
+fi
+
 EXTCHECK_DIRS_FLAG=""
 if [ ! -z "$INPUT_EXTERNAL_CHECKS_DIRS" ]; then
   IFS=', ' read -r -a extchecks_dir <<< "$INPUT_EXTERNAL_CHECKS_DIRS"
@@ -47,9 +51,11 @@ fi
 echo "::add-matcher::checkov-problem-matcher.json"
 echo "running checkov on directory: $1"
 checkov -d $INPUT_DIRECTORY $CHECK_FLAG $SKIP_CHECK_FLAG $QUIET_FLAG $SOFT_FAIL_FLAG $FRAMEWORK_FLAG $EXTCHECK_DIRS_FLAG $EXTCHECK_REPOS_FLAG $OUTPUT_FLAG $DOWNLOAD_EXTERNAL_MODULES_FLAG
-
+CHECKOV_EXIT_CODE=$?
 if [ ! -z "$INPUT_DOWNLOAD_EXTERNAL_MODULES" ] && [ "$INPUT_DOWNLOAD_EXTERNAL_MODULES" = "true" ]; then
   echo "Cleaning up $INPUT_DIRECTORY/.external_modules directory"
   #This directory must be removed here for the self hosted github runners run as non-root user.
   rm -fr $INPUT_DIRECTORY/.external_modules
+  exit $CHECKOV_EXIT_CODE
 fi
+exit $CHECKOV_EXIT_CODE
