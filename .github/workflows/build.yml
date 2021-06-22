@@ -3,7 +3,7 @@ on: repository_dispatch
 
 jobs:
   update-checkov:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, public, linux, x64]
     steps:
       - uses: actions/checkout@v2
         with:
