@@ -6,21 +6,15 @@ jobs:
     runs-on: [self-hosted, public, linux, x64]
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: update release
         run: |
           # update checkov version
-          checkov_version=$(curl -sL https://api.github.com/repos/bridgecrewio/checkov/tags | jq -r '.[0]["name"]' )
-          echo "checkov==$checkov_version" > 'requirements.txt'
-          echo "version = '$checkov_version'"
-
-          # create a release
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git fetch --tags
-          git commit -am "update checkov version to '$checkov_version'"
-          git push
+          version=$(curl -s https://api.github.com/repos/bridgecrewio/checkov/releases/latest | jq -r '.name')
+          sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/checkov.*'\''/docker:\/\/bridgecrew\/checkov:'"${version}"''\''/g' action.yaml
+          rm action.yaml.bkp
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Bump yor container version
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.17.2
         env:
