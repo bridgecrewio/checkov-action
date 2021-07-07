@@ -18,4 +18,3 @@ jobs:
           directory: example/
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
-          log_level: DEBUG # optional: set log level. Default WARNING
