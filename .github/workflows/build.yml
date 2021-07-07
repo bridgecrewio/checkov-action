@@ -4,17 +4,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  checkov-job:
-    runs-on: ubuntu-latest
-    name: checkov-action
+  update-checkov:
+    runs-on: [self-hosted, public, linux, x64]
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@master
-
-      - name: Run Checkov action
-        id: checkov
-        uses: bridgecrewio/checkov-action@master
+      - uses: actions/checkout@v2
+      - name: update release
+        run: |
+          # update checkov version
+          version=$(curl -s https://api.github.com/repos/bridgecrewio/checkov/releases/latest | jq -r '.name')
+          sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/checkov.*'\''/docker:\/\/bridgecrew\/checkov:'"${version}"''\''/g' action.yml
+          rm action.yml.bkp
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          directory: example/
-          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-          download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
+          commit_message: Bump yor container version
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
