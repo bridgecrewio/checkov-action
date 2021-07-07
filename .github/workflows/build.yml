@@ -8,13 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     name: checkov-action
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@master
-
-      - name: Run Checkov action
-        id: checkov
-        uses: bridgecrewio/checkov-action@master
+      - name: Run Bridgecrew
+        id: Bridgecrew
+        uses: bridgecrewio/bridgecrew-action@master
         with:
-          directory: example/
-          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-          download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
+          api-key: ${{ secrets.BRIDGECREW_API_KEY }}
