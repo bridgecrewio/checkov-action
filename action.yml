@@ -1,59 +1,59 @@
-## action.yml
-#name: 'Checkov GitHub Action'
-#author: 'Chris Mavrakis'
-#description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged GitHub Action.'
-#inputs:
-#  directory:
-#    description: 'directory with infrastructure code to scan'
-#    default: '.'
-#    required: false
-#  check:
-#    description: 'Run scan only on a specific check identifier (comma separated)'
-#    required: false
-#  skip_check:
-#    description: 'Run scan on all checks but a specific check identifier (comma separated)'
-#    required: false
-#  quiet:
-#    description: 'display only failed checks'
-#    required: false
-#  soft_fail:
-#    description: 'do not return an error code if there are failed checks'
-#    required: false
-#  framework:
-#    description: 'run only on a specific infrastructure'
-#    required: false
-#  external_checks_dirs:
-#    description: 'comma separated list of external (custom) checks directories'
-#    required: false
-#  external_checks_repos:
-#    description: 'comma separated list of external (custom) checks repositories'
-#    required: false
-#  output_format:
-#    description: 'The format of the output. cli, json, junitxml, github_failed_only'
-#    required: false
-#  download_external_modules:
-#    description: 'download external terraform modules from public git repositories and terraform registry:true, false'
-#    required: false
-#  log_level:
-#    description: 'log level'
-#    required: false
-#    default: 'WARNING'
-#
-#branding:
-#  icon: 'shield'
-#  color: 'purple'
-#runs:
-#  using: 'docker'
-#  image: 'docker://bridgecrew/checkov:2.0.253'
-#  args:
-#    - ${{ inputs.directory }}
-#    - ${{ inputs.check }}
-#    - ${{ inputs.skip_check }}
-#    - ${{ inputs.quiet }}
-#    - ${{ inputs.soft_fail }}
-#    - ${{ inputs.framework }}
-#    - ${{ inputs.external_checks_dirs }}
-#    - ${{ inputs.external_checks_repos }}
-#    - ${{ inputs.output_format }}
-#    - ${{ inputs.download_external_modules }}
-#    - ${{ inputs.log_level }}
+# action.yml
+name: 'Checkov GitHub Action'
+author: 'Chris Mavrakis'
+description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged GitHub Action.'
+inputs:
+  directory:
+    description: 'directory with infrastructure code to scan'
+    default: '.'
+    required: false
+  check:
+    description: 'Run scan only on a specific check identifier (comma separated)'
+    required: false
+  skip_check:
+    description: 'Run scan on all checks but a specific check identifier (comma separated)'
+    required: false
+  quiet:
+    description: 'display only failed checks'
+    required: false
+  soft_fail:
+    description: 'do not return an error code if there are failed checks'
+    required: false
+  framework:
+    description: 'run only on a specific infrastructure'
+    required: false
+  external_checks_dirs:
+    description: 'comma separated list of external (custom) checks directories'
+    required: false
+  external_checks_repos:
+    description: 'comma separated list of external (custom) checks repositories'
+    required: false
+  output_format:
+    description: 'The format of the output. cli, json, junitxml, github_failed_only'
+    required: false
+  download_external_modules:
+    description: 'download external terraform modules from public git repositories and terraform registry:true, false'
+    required: false
+  log_level:
+    description: 'log level'
+    required: false
+    default: 'WARNING'
+
+branding:
+  icon: 'shield'
+  color: 'purple'
+runs:
+  using: 'docker'
+  image: 'docker://bridgecrew/checkov:2.0.253'
+  args:
+    - ${{ inputs.directory }}
+    - ${{ inputs.check }}
+    - ${{ inputs.skip_check }}
+    - ${{ inputs.quiet }}
+    - ${{ inputs.soft_fail }}
+    - ${{ inputs.framework }}
+    - ${{ inputs.external_checks_dirs }}
+    - ${{ inputs.external_checks_repos }}
+    - ${{ inputs.output_format }}
+    - ${{ inputs.download_external_modules }}
+    - ${{ inputs.log_level }}
