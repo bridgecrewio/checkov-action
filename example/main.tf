@@ -1,14 +1,10 @@
-resource "aws_redshift_parameter_group" "pass" {
-  name   = var.param_group_name
-  family = "redshift-1.0"
-
-  parameter {
-    name  = "require_ssl"
-    value = "true"
+resource "aws_s3_bucket" "enabled_via_object" {
+  bucket = "test-bucket"
+  acl    = "private"
+  versioning {
+    enabled = true
   }
-
-  parameter {
-    name  = "enable_user_activity_logging"
-    value = "true"
+  object_lock_configuration = {
+    object_lock_enabled = "Enabled"
   }
 }
