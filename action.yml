@@ -38,6 +38,9 @@ inputs:
     description: 'log level'
     required: false
     default: 'WARNING'
+  config_file:
+    description: 'checkov configuration file'
+    required: false
 
 branding:
   icon: 'shield'
@@ -57,3 +60,4 @@ runs:
     - ${{ inputs.output_format }}
     - ${{ inputs.download_external_modules }}
     - ${{ inputs.log_level }}
+    - ${{ inputs.config_file }}
