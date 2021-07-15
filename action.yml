@@ -38,6 +38,9 @@ inputs:
     description: 'log level'
     required: false
     default: 'WARNING'
+  config_file:
+    description: 'checkov configuration file'
+    required: false
   baseline:
     description: 'Path to a .checkov.baseline file to compare. Report will include only failed checks that are not in the baseline'
     required: false
@@ -47,7 +50,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://bridgecrew/checkov:2.0.253'
+  image: 'docker://bridgecrew/checkov:2.0.275'
   args:
     - ${{ inputs.directory }}
     - ${{ inputs.check }}
@@ -60,4 +63,5 @@ runs:
     - ${{ inputs.output_format }}
     - ${{ inputs.download_external_modules }}
     - ${{ inputs.log_level }}
+    - ${{ inputs.config_file }}
     - ${{ inputs.baseline }}
