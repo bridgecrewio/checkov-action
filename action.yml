@@ -41,6 +41,9 @@ inputs:
   config_file:
     description: 'checkov configuration file'
     required: false
+  baseline:
+    description: 'Path to a .checkov.baseline file to compare. Report will include only failed checks that are not in the baseline'
+    required: false
 
 branding:
   icon: 'shield'
@@ -61,3 +64,4 @@ runs:
     - ${{ inputs.download_external_modules }}
     - ${{ inputs.log_level }}
     - ${{ inputs.config_file }}
+    - ${{ inputs.baseline }}

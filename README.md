@@ -31,6 +31,7 @@ jobs:
           download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
           log_level: DEBUG # optional: set log level. Default WARNING
           config_file: path/this_file
+          baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
 ```
 
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
