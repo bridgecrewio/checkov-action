@@ -16,6 +16,9 @@ inputs:
   quiet:
     description: 'display only failed checks'
     required: false
+  api-key:
+    description: 'Environment variable name of the Bridgecrew API key from Bridgecrew app'
+    required: false
   soft_fail:
     description: 'do not return an error code if there are failed checks'
     required: false
@@ -44,6 +47,12 @@ inputs:
   baseline:
     description: 'Path to a .checkov.baseline file to compare. Report will include only failed checks that are not in the baseline'
     required: false
+  soft_fail_on:
+    description: 'Do not return an error code only for specific check identifiers (comma separated)'
+    required: false
+  hard_fail_on:
+    description: 'Return an error code only for specific check identifiers (comma separated)'
+    required: false  
 
 branding:
   icon: 'shield'
@@ -65,3 +74,8 @@ runs:
     - ${{ inputs.log_level }}
     - ${{ inputs.config_file }}
     - ${{ inputs.baseline }}
+    - ${{ inputs.hard_fail_on }}
+    - ${{ inputs.soft_fail_on }}
+  
+  env:
+    API_KEY_VARIABLE: ${{ inputs.api-key }}
