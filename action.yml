@@ -52,7 +52,10 @@ inputs:
     required: false
   hard_fail_on:
     description: 'Return an error code only for specific check identifiers (comma separated)'
-    required: false  
+    required: false
+outputs:
+  results:
+    description: 'The results from the infrastructure scan'
 
 branding:
   icon: 'shield'
