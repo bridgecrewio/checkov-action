@@ -9,6 +9,7 @@ Checkov performs static security analysis of Terraform & CloudFormation Infrastr
 ## Example usage
 
 ```yaml
+on: [push]
 jobs:
   checkov-job:
     runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
         with:
           directory: example/
           check: CKV_AWS_1 # optional: run only a specific check_id. can be comma separated list
-          skip_check: CKV_AWS_1 # optional: skip a specific check_id. can be comma separated list
+          skip_check: CKV_AWS_2 # optional: skip a specific check_id. can be comma separated list
           quiet: true # optional: display only failed checks
           soft_fail: true # optional: do not return an error code if there are failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
@@ -35,3 +36,4 @@ jobs:
 ```
 
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
+Also, the check ids specified for '--check' and '--skip-check' must be mutually exclusive.
