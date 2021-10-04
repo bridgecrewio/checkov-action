@@ -33,6 +33,7 @@ jobs:
           log_level: DEBUG # optional: set log level. Default WARNING
           config_file: path/this_file
           baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
+          container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
 ```
 
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).

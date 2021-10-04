@@ -53,6 +53,10 @@ inputs:
   hard_fail_on:
     description: 'Return an error code only for specific check identifiers (comma separated)'
     required: false
+  container_user:
+    default: 0
+    description: 'Set the username or UID used and optionally the groupname or GID for the action to run under'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -79,6 +83,6 @@ runs:
     - ${{ inputs.baseline }}
     - ${{ inputs.hard_fail_on }}
     - ${{ inputs.soft_fail_on }}
-  
+    - "--user ${{ inputs.container_user }}"  
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
