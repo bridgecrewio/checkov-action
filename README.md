@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     name: checkov-action
     steps:
+    
       - name: Checkout repo
         uses: actions/checkout@master
+
 
       - name: Run Checkov action
         id: checkov
