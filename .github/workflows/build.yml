@@ -16,7 +16,7 @@ jobs:
           rm action.yml.bkp
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Bump yor container version
+          commit_message: Bump checkov container version
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.17.2
         env:
