@@ -32,8 +32,9 @@ inputs:
     description: 'comma separated list of external (custom) checks repositories'
     required: false
   output_format:
-    description: 'The format of the output. cli, json, junitxml, github_failed_only'
+    description: 'The format of the output. cli, json, junitxml, github_failed_only, or sarif'
     required: false
+    default: 'sarif'
   download_external_modules:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
