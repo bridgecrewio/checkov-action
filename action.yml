@@ -67,7 +67,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://bridgecrew/checkov:2.0.955'
+  image: 'docker://bridgecrew/checkov:2.0.956'
   args:
     - ${{ inputs.directory }}
     - ${{ inputs.check }}
