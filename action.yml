@@ -13,6 +13,9 @@ inputs:
   skip_check:
     description: 'Run scan on all checks but a specific check identifier (comma separated)'
     required: false
+  compact:
+    description: 'Do not display code blocks in output'
+    required: false
   quiet:
     description: 'display only failed checks'
     required: false
@@ -72,6 +75,7 @@ runs:
     - ${{ inputs.directory }}
     - ${{ inputs.check }}
     - ${{ inputs.skip_check }}
+    - ${{ inputs.compact }}
     - ${{ inputs.quiet }}
     - ${{ inputs.soft_fail }}
     - ${{ inputs.framework }}
