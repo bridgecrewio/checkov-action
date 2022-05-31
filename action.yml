@@ -61,6 +61,12 @@ inputs:
     default: 0
     description: 'Set the username or UID used and optionally the groupname or GID for the action to run under'
     required: false
+  docker_image:
+    description: 'Name of the docker image with the tags. Only works with an API and Dockerfile path'
+    required: false
+  dockerfile_path:
+    description: 'Path to the Dockerfile of the scanned docker image'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -88,6 +94,8 @@ runs:
     - ${{ inputs.baseline }}
     - ${{ inputs.hard_fail_on }}
     - ${{ inputs.soft_fail_on }}
+    - ${{ inputs.docker_image }}
+    - ${{ inputs.dockerfile_path }}
     - "--user ${{ inputs.container_user }}"  
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
