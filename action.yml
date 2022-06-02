@@ -3,10 +3,13 @@ name: 'Checkov GitHub Action'
 author: 'Chris Mavrakis'
 description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged GitHub Action.'
 inputs:
-  directory:
-    description: 'directory with infrastructure code to scan'
-    default: '.'
+  file:
+    description: 'File with infrastructure code to scan'
     required: false
+  directory:
+    description: 'Directory with infrastructure code to scan'
+    required: false
+    default: '.'
   check:
     description: 'Run scan only on a specific check identifier (comma separated)'
     required: false
@@ -70,8 +73,9 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://bridgecrew/checkov:2.0.1187'
+  image: 'docker://rmartinezb/checkov:latest'
   args:
+    - ${{ inputs.file }}
     - ${{ inputs.directory }}
     - ${{ inputs.check }}
     - ${{ inputs.skip_check }}
