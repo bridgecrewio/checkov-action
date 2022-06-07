@@ -7,9 +7,9 @@ inputs:
     description: 'File with infrastructure code to scan'
     required: false
   directory:
+    default: '.'
     description: 'Directory with infrastructure code to scan'
     required: false
-    default: '.'
   check:
     description: 'Run scan only on a specific check identifier (comma separated)'
     required: false
