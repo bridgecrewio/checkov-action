@@ -30,7 +30,7 @@ jobs:
         with:
           fetch-depth: '0'
 
-      - name: version-tag-mayor
+      - name: version-tag-major
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
