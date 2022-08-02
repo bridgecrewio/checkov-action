@@ -9,6 +9,9 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+
       - name: update-release
         run: |
           # update checkov version
@@ -25,10 +28,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: '0'
 
       - name: version-tag-major
         env:
