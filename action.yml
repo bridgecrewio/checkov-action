@@ -64,6 +64,30 @@ inputs:
     default: 0
     description: 'Set the username or UID used and optionally the groupname or GID for the action to run under'
     required: false
+  github_pat:
+    description: 'Environment variable name for a Github personal access token for scanning external modules sourced from private repositories'
+    required: false
+  tfc_token:
+    description: 'Environment variable name for a Terraform Cloud token for scanning external modules sourced from private registries'
+    required: false
+  vcs_base_url:
+    description: 'Environment variable name for the base url of a self hosted VCS with external modules. To be used with vcs_username and vcs_token'
+    required: false
+  vcs_username:
+    description: 'Environment variable name for the username for basic auth against a self hosted VCS with external modules. To be used with vcs_base_url and vcs_token'
+    required: false
+  vcs_token:
+    description: 'Environment variable name for the password (personal access token) for basic auth against a self hosted VCS with external modules. To be used with vcs_base_url and vcs_username'
+    required: false
+  bitbucket_token:
+    description: 'Environment variable name for a Bitbucket access token to scan external modules sourced from a private Bitbucket repository'
+    required: false
+  bitbucket_app_password:
+    description: 'Environment variable name for a Bitbucket app password to perform basic auth inorder to scan external modules sourced from a private Bitbucket repository. To be used with bitbucket_usernam'
+    required: false
+  bitbucket_username:
+    description: 'Environment variable name for a Bitbucket username to perform basic auth inorder to scan external modules sourced from a private Bitbucket repository. To be used with bitbucket_app_password'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -95,3 +119,11 @@ runs:
     - "--user ${{ inputs.container_user }}"  
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
+    GITHUB_PAT: ${{ inputs.github_pat }}
+    TFC_TOKEN: ${{ inputs.tfc_token }}
+    VCS_USERNAME: ${{ inputs.vcs_username }}
+    VCS_BASE_URL: ${{ inputs.vcs_base_url }}
+    VCS_TOKEN: ${{ inputs.vcs_token }}
+    BITBUCKET_TOKEN: ${{ inputs.bitbucket_token }}
+    BITBUCKET_USERNAME: ${{ inputs.bitbucket_username }}
+    BITBUCKET_APP_PASSWORD: ${{ inputs.bitbucket_app_password }}
