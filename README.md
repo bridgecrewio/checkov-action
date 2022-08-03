@@ -23,6 +23,7 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: example/
+          file: example/tfplan.json # optional: provide the path for resource to be scanned. This will override the directory if both are provided.
           check: CKV_AWS_1 # optional: run only a specific check_id. can be comma separated list
           skip_check: CKV_AWS_2 # optional: skip a specific check_id. can be comma separated list
           quiet: true # optional: display only failed checks
