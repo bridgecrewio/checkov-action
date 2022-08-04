@@ -67,6 +67,7 @@ jobs:
           docker-image: $IMAGE_NAME # define the name of the image to scan
           dockerfile-path: $IMAGE_PATH # path to the Dockerfile
           container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
+          api-key: ${{ secrets.BC_API_KEY }} # Bridgecrew API key stored as a GitHub secret
 ```
 
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
