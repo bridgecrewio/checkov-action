@@ -44,7 +44,7 @@ on: [push]
 
 env:
   IMAGE_NAME: ${{ github.repository }}:${{ github.sha }}
-  IMAGE_PATH: /path/DOCKERFILE
+  IMAGE_PATH: /path/
 
 jobs:
   checkov-image-scan:
@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build the image
-        run: docker build -t $IMAGE_NAME $IMAGE_PATH
+        run: docker build -t ${{ env.IMAGE_NAME }} ${{ env.IMAGE_PATH }}
 
       - name: Run Checkov action
         id: checkov
@@ -64,8 +64,8 @@ jobs:
           quiet: true # optional: display only failed checks
           soft_fail: true # optional: do not return an error code if there are failed checks
           log_level: DEBUG # optional: set log level. Default WARNING
-          docker-image: $IMAGE_NAME # define the name of the image to scan
-          dockerfile-path: $IMAGE_PATH # path to the Dockerfile
+          docker_image: ${{ env.IMAGE_NAME }} # define the name of the image to scan
+          dockerfile_path: ${{ format('{0}/Dockerfile', env.IMAGE_PATH) }} # path to the Dockerfile
           container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
           api-key: ${{ secrets.BC_API_KEY }} # Bridgecrew API key stored as a GitHub secret
 ```
