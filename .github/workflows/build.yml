@@ -12,41 +12,32 @@ jobs:
         with:
           fetch-depth: '0'
 
-      - name: update-release
+      - name: update-checkov-version
         run: |
-          # update checkov version
           version=$(curl -s https://api.github.com/repos/bridgecrewio/checkov/releases/latest | jq -r '.name')
           sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/checkov.*'\''/docker:\/\/bridgecrew\/checkov:'"${version}"''\''/g' action.yml
           rm action.yml.bkp
 
       - uses: stefanzweifel/git-auto-commit-action@v4
+        id: git_auto_commit
         with:
           commit_message: Bump checkov container version
 
       - name: version-tag
         uses: anothrNick/github-tag-action@1.39.0
+        if: steps.git_auto_commit.outputs.changes_detected == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
 
       - name: version-tag-major
+        if: steps.git_auto_commit.outputs.changes_detected == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git fetch --tags
           tagFmt="^v?[0-9]+\.[0-9]+\.[0-9]+$"
           tag="$(git for-each-ref --sort=-v:refname --format '%(refname:lstrip=2)' | grep -E "$tagFmt" | head -n 1)"
-          
-          # get current commit hash for tag
-          tag_commit=$(git rev-list -n 1 ${tag})
-          # get current commit hash
-          commit=$(git rev-parse HEAD)
-
-          if [ "$tag_commit" == "$commit" ]
-          then
-            echo "No new commits since previous tag. Skipping..."
-            exit 0
-          fi
 
           [[ "$tag" =~ ^(v[0-9]+) ]]
           major=${BASH_REMATCH[1]}
