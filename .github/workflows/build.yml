@@ -53,4 +53,4 @@ jobs:
 
           # update major tag
           git tag -f "$major"
-          git push -f --tags
+          git push -f origin "$major"
