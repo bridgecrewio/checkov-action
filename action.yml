@@ -70,6 +70,9 @@ inputs:
   dockerfile_path:
     description: 'Path to the Dockerfile of the scanned docker image'
     required: false
+  var_file:
+    description: 'Use custom values file when scanning a Helm Chart'
+    required: false
   github_pat:
     description: 'Environment variable name for a Github personal access token for scanning external modules sourced from private repositories'
     required: false
@@ -124,6 +127,7 @@ runs:
     - ${{ inputs.soft_fail_on }}
     - ${{ inputs.docker_image }}
     - ${{ inputs.dockerfile_path }}
+    - ${{ inputs.var_file }}
     - "--user ${{ inputs.container_user }}"  
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
