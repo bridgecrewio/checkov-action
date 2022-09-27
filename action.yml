@@ -71,7 +71,7 @@ inputs:
     description: 'Path to the Dockerfile of the scanned docker image'
     required: false
   var_file:
-    description: 'Use custom values file when scanning a Helm Chart'
+    description: 'Variable files to load in addition to the default files. Currently only supported for source Terraform (.tf file), and Helm chart scans. Requires using --directory, not --file.'
     required: false
   github_pat:
     description: 'Environment variable name for a Github personal access token for scanning external modules sourced from private repositories'
