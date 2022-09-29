@@ -19,17 +19,11 @@ jobs:
           sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/checkov.*'\''/docker:\/\/bridgecrew\/checkov:'"${version}"''\''/g' action.yml
           rm action.yml.bkp
           echo "CHECKOV_VERSION=$version" >> $GITHUB_ENV
-          echo "CHECKOV_CHANGES<<EOF" >> $GITHUB_ENV
-          echo "$changes" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV\
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         id: git_auto_commit
         with:
-          commit_message: |
-            Bump checkov container version to ${{ env.CHECKOV_VERSION }}
-            
-            ${{ env.CHECKOV_CHANGES }}
+          commit_message: Bump checkov container version to ${{ env.CHECKOV_VERSION }}
 
       - name: version-tag
         uses: anothrNick/github-tag-action@1.39.0
