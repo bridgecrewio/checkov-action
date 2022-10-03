@@ -41,6 +41,9 @@ inputs:
     description: 'The format of the output. cli, json, junitxml, github_failed_only, or sarif'
     required: false
     default: 'sarif'
+  output_file_path:
+    description: Path and name for output file.
+    required: false
   download_external_modules:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
@@ -119,6 +122,7 @@ runs:
     - ${{ inputs.external_checks_dirs }}
     - ${{ inputs.external_checks_repos }}
     - ${{ inputs.output_format }}
+    - ${{ inputs.output_file_path }}
     - ${{ inputs.download_external_modules }}
     - ${{ inputs.log_level }}
     - ${{ inputs.config_file }}
@@ -128,7 +132,7 @@ runs:
     - ${{ inputs.docker_image }}
     - ${{ inputs.dockerfile_path }}
     - ${{ inputs.var_file }}
-    - "--user ${{ inputs.container_user }}"  
+    - "--user ${{ inputs.container_user }}"
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
     GITHUB_PAT: ${{ inputs.github_pat }}
