@@ -7,7 +7,7 @@ jobs:
   update-checkov:
     runs-on: [self-hosted, public, linux, x64]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8  # v3
         with:
           fetch-depth: '0'
 
@@ -17,15 +17,15 @@ jobs:
           version=$(curl -s https://api.github.com/repos/bridgecrewio/checkov/releases/latest | jq -r '.name')
           sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/checkov.*'\''/docker:\/\/bridgecrew\/checkov:'"${version}"''\''/g' action.yml
           rm action.yml.bkp
-          echo "::set-output name=version::$version"
+          echo "version=$version" >> $GITHUB_OUTPUT
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@2fde6fc18d3b24c2561ba4b73a8e015e863cef85  # v4
         id: git_auto_commit
         with:
           commit_message: Bump checkov container version to ${{ steps.checkov_version.outputs.version }}
 
       - name: version-tag
-        uses: anothrNick/github-tag-action@1.39.0
+        uses: anothrNick/github-tag-action@1ffbb2e04bd950cffea99066469cb16d69a7887e  # v1
         if: steps.git_auto_commit.outputs.changes_detected == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
