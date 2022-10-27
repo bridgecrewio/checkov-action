@@ -30,6 +30,7 @@ jobs:
           soft_fail: true # optional: do not return an error code if there are failed checks
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           output_format: sarif # optional: the output format, one of: cli, json, junitxml, github_failed_only, or sarif. Default: sarif
+          output_file_path: reports/results.sarif # folder and name of results file
           download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
           var_file: ./testdir/gocd.yaml # optional: variable files to load in addition to the default files. Currently only supported for source Terraform and Helm chart scans.
           log_level: DEBUG # optional: set log level. Default WARNING
