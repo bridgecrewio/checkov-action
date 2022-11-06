@@ -14,7 +14,7 @@ jobs:
       - name: update-checkov-version
         id: checkov_version
         run: |
-          version=$(curl -s https://api.github.com/repos/bridgecrewio/checkov/releases/latest | jq -r '.name')
+          version=$(curl -s curl -s https://api.github.com/repos/bridgecrewio/checkov/tags | jq -r '.[0].name')
           sed -i'.bkp' -e 's/docker:\/\/bridgecrew\/checkov.*'\''/docker:\/\/bridgecrew\/checkov:'"${version}"''\''/g' action.yml
           rm action.yml.bkp
           echo "version=$version" >> $GITHUB_OUTPUT
