@@ -1,0 +1,23 @@
+name: PR
+
+on: pull_request
+
+permissions: read-all
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8  # v3
+
+      - name: Checkout terragoat
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8  # v3
+        with:
+          path: terragoat
+          repository: bridgecrewio/terragoat
+
+      - name: Scan terragoat
+        uses: ./
+        with:
+          directory: terragoat
+          soft_fail: true  # don't want to fail the step, because of found findings
