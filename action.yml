@@ -1,14 +1,14 @@
 # action.yml
 name: 'Checkov GitHub Action'
 author: 'Chris Mavrakis'
-description: 'Run Checkov against Terraform/CloudFormation infrastructure code, as a pre-packaged GitHub Action.'
+description: 'Run Checkov against infrastructure as code, open source packages, container images, and CI/CD configurations as a pre-packaged GitHub Action.'
 inputs:
   file:
-    description: 'File with infrastructure code to scan'
+    description: 'File with infrastructure code or packages to scan'
     required: false
   directory:
     default: '.'
-    description: 'Directory with infrastructure code to scan'
+    description: 'Directory with infrastructure code and/or package manager files to scan'
     required: false
   check:
     description: 'Run scan only on a specific check identifier (comma separated)'
