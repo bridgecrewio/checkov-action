@@ -9,37 +9,53 @@ open source packages, container images, and CI/CD configurations to identify mis
 ## Example usage for IaC and SCA
 
 ```yaml
-on: [push]
-jobs:
-  checkov-job:
-    runs-on: ubuntu-latest
-    name: checkov-action
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@master
+name: checkov
 
-      - name: Run Checkov action
-        id: checkov
-        uses: bridgecrewio/checkov-action@master
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+      
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/bridgecrew-action@master
+        
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        
+        # Results are generated only on a success or failure
+        # this is required since GitHub by default won't run the next step
+        # when the previous one has failed. Security checks that do not pass will 'fail'.
+        # An alternative is to add `continue-on-error: true` to the previous step
+        # Or a 'soft_fail: true' to checkov.
+        if: success() || failure()
         with:
-          directory: example/
-          file: example/tfplan.json # optional: provide the path for resource to be scanned. This will override the directory if both are provided.
-          check: CKV_AWS_1 # optional: run only a specific check_id. can be comma separated list
-          skip_check: CKV_AWS_2 # optional: skip a specific check_id. can be comma separated list
-          quiet: true # optional: display only failed checks
-          soft_fail: true # optional: do not return an error code if there are failed checks
-          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
-          output_format: sarif # optional: the output format, one of: cli, json, junitxml, github_failed_only, or sarif. Default: sarif
-          output_file_path: reports/results.sarif # folder and name of results file
-          download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
-          var_file: ./testdir/gocd.yaml # optional: variable files to load in addition to the default files. Currently only supported for source Terraform and Helm chart scans.
-          log_level: DEBUG # optional: set log level. Default WARNING
-          config_file: path/this_file
-          baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
-          container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
+          sarif_file: results.sarif
 ```
 
-## Example usage for container images
+## Example usage for container images and 'with' block
 
 ```yaml
 on: [push]
