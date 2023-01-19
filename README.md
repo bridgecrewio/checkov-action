@@ -49,7 +49,7 @@ jobs:
         # this is required since GitHub by default won't run the next step
         # when the previous one has failed. Security checks that do not pass will 'fail'.
         # An alternative is to add `continue-on-error: true` to the previous step
-        # Or a 'soft_fail: true' to checkov.
+        # Or 'soft_fail: true' to checkov.
         if: success() || failure()
         with:
           sarif_file: results.sarif
