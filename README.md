@@ -15,9 +15,9 @@ name: checkov
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
