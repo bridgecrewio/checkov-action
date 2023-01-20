@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Checkov GitHub Action
-        uses: bridgecrewio/bridgecrew-action@master
+        uses: bridgecrewio/checkov-action@master
         
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
