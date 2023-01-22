@@ -100,6 +100,9 @@ inputs:
   bitbucket_username:
     description: 'Environment variable name for a Bitbucket username to perform basic auth inorder to scan external modules sourced from a private Bitbucket repository. To be used with bitbucket_app_password'
     required: false
+  repo_root_for_plan_enrichment:
+    description: 'Directory containing the hcl code used to generate a given plan file. Use with `file`'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -132,6 +135,7 @@ runs:
     - ${{ inputs.docker_image }}
     - ${{ inputs.dockerfile_path }}
     - ${{ inputs.var_file }}
+    - ${{ inputs.repo_root_for_plan_enrichment }}
     - "--user ${{ inputs.container_user }}"
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
