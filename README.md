@@ -55,7 +55,41 @@ jobs:
           sarif_file: results.sarif
 ```
 
-## Example usage for container images and 'with' block
+## Example usage for options/environemnt variables in 'with' block
+
+```yaml
+on: [push]
+jobs:
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: example/
+          file: example/tfplan.json # optional: provide the path for resource to be scanned. This will override the directory if both are provided.
+          check: CKV_AWS_1 # optional: run only a specific check_id. can be comma separated list
+          skip_check: CKV_AWS_2 # optional: skip a specific check_id. can be comma separated list
+          quiet: true # optional: display only failed checks
+          soft_fail: true # optional: do not return an error code if there are failed checks
+          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+          output_format: sarif # optional: the output format, one of: cli, json, junitxml, github_failed_only, or sarif. Default: sarif
+          output_file_path: reports/results.sarif # folder and name of results file
+          download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
+          var_file: ./testdir/gocd.yaml # optional: variable files to load in addition to the default files. Currently only supported for source Terraform and Helm chart scans.
+          log_level: DEBUG # optional: set log level. Default WARNING
+          config_file: path/this_file
+          baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
+          container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
+
+```
+
+## Example usage for container images
 
 ```yaml
 on: [push]
