@@ -55,7 +55,7 @@ jobs:
           sarif_file: results.sarif
 ```
 
-## Example usage for options/environemnt variables in 'with' block
+## Example usage for options/environment variables in 'with' block
 
 ```yaml
 on: [push]
