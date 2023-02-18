@@ -44,6 +44,7 @@ inputs:
   output_file_path:
     description: Path and name for output file.
     required: false
+    default: 'results.sarif'
   download_external_modules:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
