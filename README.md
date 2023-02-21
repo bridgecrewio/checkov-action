@@ -41,6 +41,10 @@ jobs:
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
+        with:
+          # This will add both a CLI output to the console and create a results.sarif file
+          output_format: cli,sarif
+          output_file_path: console,results.sarif
         
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
