@@ -40,11 +40,10 @@ inputs:
   output_format:
     description: 'The format of the output. cli, json, junitxml, github_failed_only, or sarif (comma separated)'
     required: false
-    default: 'cli,sarif'
+    default: 'sarif'
   output_file_path:
     description: 'Path and name for output file, needs to end with a comma for a single output format'
     required: false
-    default: 'console,results.sarif'
   download_external_modules:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
