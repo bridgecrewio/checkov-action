@@ -25,6 +25,9 @@ inputs:
   api-key:
     description: 'Environment variable name of the Bridgecrew API key from Bridgecrew app'
     required: false
+  use_enforcement_rules:
+    description: 'Use the Enforcement rules configured in the platform for hard / soft fail logic. See checkov help text for more details on the nuances of this option.'
+    required: false
   soft_fail:
     description: 'do not return an error code if there are failed checks'
     required: false
@@ -112,7 +115,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bridgecrewio/checkov:2.3.57'
+  image: 'docker://ghcr.io/bridgecrewio/checkov:2.3.73'
   args:
     - ${{ inputs.file }}
     - ${{ inputs.directory }}
@@ -121,6 +124,7 @@ runs:
     - ${{ inputs.compact }}
     - ${{ inputs.quiet }}
     - ${{ inputs.soft_fail }}
+    - ${{ inputs.use_enforcement_rules }}
     - ${{ inputs.framework }}
     - ${{ inputs.external_checks_dirs }}
     - ${{ inputs.external_checks_repos }}
