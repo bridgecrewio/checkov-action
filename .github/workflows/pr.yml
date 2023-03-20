@@ -27,3 +27,5 @@ jobs:
         with:
           directory: tests/private
           soft_fail: true  # don't want to fail the step, because of found findings
+          download_external_modules: true
+          github_pat: ${{ secrets.TEST_PAT_TOKEN }}
