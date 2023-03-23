@@ -51,7 +51,7 @@ inputs:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
   enable_secrets_scan_all_files:
-    description: 'scan all files for secrets'
+    description: 'Scan all files for secrets'
     required: false
   log_level:
     description: 'log level'
