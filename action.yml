@@ -134,7 +134,7 @@ runs:
     - ${{ inputs.output_format }}
     - ${{ inputs.output_file_path }}
     - ${{ inputs.download_external_modules }}
-    - ${{ inputes.enable_secrets_scan_all_files }}
+    - ${{ inputs.enable_secrets_scan_all_files }}
     - ${{ inputs.log_level }}
     - ${{ inputs.config_file }}
     - ${{ inputs.baseline }}
