@@ -130,3 +130,29 @@ jobs:
 
 Note that this example uses the latest version (`master`) but you could also use a static version (e.g. `v3`).
 Also, the check ids specified for '--check' and '--skip-check' must be mutually exclusive.
+
+## Example usage for private Terraform modules
+
+To give `checkov` the possibility to download private GitHub modules you need to pass a valid GitHub PAT with the needed permissions.
+
+```yaml
+on: [push]
+jobs:
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          soft_fail: true
+          download_external_modules: true
+          github_pat: ${{ secrets.GH_PAT }}
+        env:
+          GITHUB_OVERRIDE_URL: true  # optional: this can be used to instruct the action to override the global GIT config to inject the PAT to the URL
+```
