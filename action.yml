@@ -22,6 +22,25 @@ inputs:
   quiet:
     description: 'display only failed checks'
     required: false
+  prisma_api_url:
+    description: |-
+      The URL for Prisma Cloud varies depending on the region and cluster on which your tenant is deployed.
+      The tenant provisioned for you is, for example, https://app2.prismacloud.io or https://app.eu.prismacloud.io.
+      Replace 'app' in the URL with 'api' and enter it here.
+      Refer to the Prisma Cloud REST API Reference (https://api.docs.prismacloud.io/reference#try-the-apis) for more details.
+    requried: false
+  prisma_access_key:
+    description: |-
+      The access key enables programmatic access.
+      If you do not have a key, refer to Create and Manage Access Keys (https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin/manage-prisma-cloud-administrators/create-access-keys.html) to acquire one.
+      We recommend the actual value to be stored as a GitHub Secret and used here in the Action with secrets.PRISMA_CLOUD_ACCESS_KEY
+      required: false
+  prisma_secret_key:
+    description: |-
+      The secret key is provided to you at the time of Access Key generation.
+      You cannot view it on the Prisma Cloud web interface.
+      We recommend the actual value to be stored as a GitHub Secret and used here in the Action with secrets.PRISMA_CLOUD_SECRET_KEY
+      required: false
   api-key:
     description: 'Environment variable name of the Bridgecrew API key from Bridgecrew app'
     required: false
@@ -155,3 +174,6 @@ runs:
     BITBUCKET_TOKEN: ${{ inputs.bitbucket_token }}
     BITBUCKET_USERNAME: ${{ inputs.bitbucket_username }}
     BITBUCKET_APP_PASSWORD: ${{ inputs.bitbucket_app_password }}
+    PRISMA_API_URL: ${{ inputs.PRISMA_API_URL }}
+    PRISMA_ACCESS_KEY: ${{ secrets.PRISMA_CLOUD_ACCESS_KEY }}
+    PRISMA_SECRET_KEY: ${{ secrets.PRISMA_CLOUD_SECRET_KEY }}
