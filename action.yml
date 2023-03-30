@@ -118,7 +118,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'tsmithv11/checkov-test:0.1'
+  image: 'docker://tsmithv11/checkov-test:0.1'
   args:
     - ${{ inputs.file }}
     - ${{ inputs.directory }}
