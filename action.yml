@@ -50,6 +50,9 @@ inputs:
   download_external_modules:
     description: 'download external terraform modules from public git repositories and terraform registry:true, false'
     required: false
+  enable_secrets_scan_all_files:
+    description: 'Scan all files for secrets'
+    required: false
   log_level:
     description: 'log level'
     required: false
@@ -115,7 +118,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bridgecrewio/checkov:2.3.114'
+  image: 'docker://ghcr.io/bridgecrewio/checkov:2.3.152'
   args:
     - ${{ inputs.file }}
     - ${{ inputs.directory }}
@@ -131,6 +134,7 @@ runs:
     - ${{ inputs.output_format }}
     - ${{ inputs.output_file_path }}
     - ${{ inputs.download_external_modules }}
+    - ${{ inputs.enable_secrets_scan_all_files }}
     - ${{ inputs.log_level }}
     - ${{ inputs.config_file }}
     - ${{ inputs.baseline }}
