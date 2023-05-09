@@ -109,6 +109,9 @@ inputs:
   repo_root_for_plan_enrichment:
     description: 'Directory containing the hcl code used to generate a given plan file. Use with `file`'
     required: false
+  policy_metadata_filter:
+    description: 'comma separated key:value string to filter policies based on Prisma Cloud policy metadata. See https://prisma.pan.dev/api/cloud/cspm/policy#operation/get-policy-filters-and-options for information on allowed filters. Format: policy.label=test,cloud.type=aws'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -118,7 +121,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bridgecrewio/checkov:2.3.187'
+  image: 'docker://ghcr.io/bridgecrewio/checkov:2.3.234'
   args:
     - ${{ inputs.file }}
     - ${{ inputs.directory }}
@@ -144,6 +147,7 @@ runs:
     - ${{ inputs.dockerfile_path }}
     - ${{ inputs.var_file }}
     - ${{ inputs.repo_root_for_plan_enrichment }}
+    - ${{ inputs.policy_metadata_filter }}
     - "--user ${{ inputs.container_user }}"
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
