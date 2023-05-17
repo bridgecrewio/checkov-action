@@ -28,6 +28,9 @@ inputs:
   use_enforcement_rules:
     description: 'Use the Enforcement rules configured in the platform for hard / soft fail logic. See checkov help text for more details on the nuances of this option.'
     required: false
+  skip_results_upload:
+    description: 'Do not upload scan results to the platform to view in the console. Results are only available locally. If you use the --support flag, logs will still get uploaded.'
+    required: false
   soft_fail:
     description: 'do not return an error code if there are failed checks'
     required: false
@@ -131,6 +134,7 @@ runs:
     - ${{ inputs.quiet }}
     - ${{ inputs.soft_fail }}
     - ${{ inputs.use_enforcement_rules }}
+    - ${{ inputs.skip_results_upload }}
     - ${{ inputs.framework }}
     - ${{ inputs.external_checks_dirs }}
     - ${{ inputs.external_checks_repos }}
