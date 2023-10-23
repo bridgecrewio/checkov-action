@@ -127,9 +127,6 @@ inputs:
   skip_cve_package:
     description: 'Filter scan to run on all packages except for a specific CVE package identifier, e.g. CVE-2018-19788 (comma separated)'
     required: false
-  openai_api_key:
-    description: 'Add an OpenAI API key to enhance finding guidelines. This will send Code to OpenAI'
-    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -171,7 +168,6 @@ runs:
     - ${{ inputs.policy_metadata_filter }}
     - ${{ inputs.skip_path }}
     - ${{ inputs.skip_cve_package }}
-    - ${{ inputs.openai_api_key }}
     - "--user ${{ inputs.container_user }}"
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}

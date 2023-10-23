@@ -95,7 +95,6 @@ jobs:
           baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
           container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
           use_enforcement_rules: true # optional - use enforcement rule configs from the platform
-          openai_api_key: true # optional - use OpenAI to enhance finding guidelines. This will send Code to OpenAI
 
 ```
 
