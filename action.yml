@@ -25,7 +25,7 @@ inputs:
   api-key:
     description: 'Environment variable name of the Bridgecrew API key from Bridgecrew app'
     required: false
-  output-bc-ids:
+  output_bc_ids:
     description: 'Output Bridgecrew IDs (BC...) instead of Checkov IDs (CKV...)'
     required: false
   use_enforcement_rules:
