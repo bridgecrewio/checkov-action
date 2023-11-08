@@ -127,6 +127,9 @@ inputs:
   skip_cve_package:
     description: 'Filter scan to run on all packages except for a specific CVE package identifier, e.g. CVE-2018-19788 (comma separated)'
     required: false
+  skip_download:
+    description: 'Do not download any data from Bridgecrew. This will omit doc links, severities, etc., as well as custom policies and suppressions if using an API token. Note: it will prevent BC platform IDs from being available in Checkov.'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
