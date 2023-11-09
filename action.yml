@@ -171,6 +171,7 @@ runs:
     - ${{ inputs.policy_metadata_filter }}
     - ${{ inputs.skip_path }}
     - ${{ inputs.skip_cve_package }}
+    - ${{ inputs.skip_download }}
     - "--user ${{ inputs.container_user }}"
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
