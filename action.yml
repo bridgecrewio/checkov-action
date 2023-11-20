@@ -139,7 +139,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bridgecrewio/checkov:3.0.40'
+  image: 'docker://ghcr.io/bridgecrewio/checkov:3.1.0'
   args:
     - ${{ inputs.file }}
     - ${{ inputs.directory }}
