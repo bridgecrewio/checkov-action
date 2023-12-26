@@ -95,7 +95,10 @@ inputs:
     description: 'Environment variable name for a Github personal access token for scanning external modules sourced from private repositories'
     required: false
   tfc_token:
-    description: 'Environment variable name for a Terraform Cloud token for scanning external modules sourced from private registries'
+    description: '(deprecated, use tf_registry_token) Environment variable name for a Terraform Cloud token for scanning external modules sourced from private registries'
+    required: false
+  tf_registry_token:
+    description: 'Environment variable name for a Terraform registry token for scanning external modules sourced from private registries'
     required: false
   vcs_base_url:
     description: 'Environment variable name for the base url of a self hosted VCS with external modules. To be used with vcs_username and vcs_token'
@@ -177,6 +180,7 @@ runs:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
     GITHUB_PAT: ${{ inputs.github_pat }}
     TFC_TOKEN: ${{ inputs.tfc_token }}
+    TF_REGISTRY_TOKEN: ${{ inputs.tf_registry_token }}
     VCS_USERNAME: ${{ inputs.vcs_username }}
     VCS_BASE_URL: ${{ inputs.vcs_base_url }}
     VCS_TOKEN: ${{ inputs.vcs_token }}
