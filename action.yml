@@ -133,6 +133,9 @@ inputs:
   skip_download:
     description: 'Do not download any data from Bridgecrew. This will omit doc links, severities, etc., as well as custom policies and suppressions if using an API token. Note: it will prevent BC platform IDs from being available in Checkov.'
     required: false
+  prisma-api-url:
+    description: 'Prisma API URL for prisma platform features'
+    required: false
 outputs:
   results:
     description: 'The results from the infrastructure scan'
@@ -187,3 +190,5 @@ runs:
     BITBUCKET_TOKEN: ${{ inputs.bitbucket_token }}
     BITBUCKET_USERNAME: ${{ inputs.bitbucket_username }}
     BITBUCKET_APP_PASSWORD: ${{ inputs.bitbucket_app_password }}
+    PRISMA_API_URL: ${{ inputs.prisma-api-url }}
+    
