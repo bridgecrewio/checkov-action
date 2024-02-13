@@ -100,6 +100,9 @@ inputs:
   tf_registry_token:
     description: 'Environment variable name for a Terraform registry token for scanning external modules sourced from private registries'
     required: false
+  ckv_validate_secrets:
+    description: 'Environment variable to enable local validation of secrets. Off by default.'
+    required: false
   vcs_base_url:
     description: 'Environment variable name for the base url of a self hosted VCS with external modules. To be used with vcs_username and vcs_token'
     required: false
@@ -191,4 +194,5 @@ runs:
     BITBUCKET_USERNAME: ${{ inputs.bitbucket_username }}
     BITBUCKET_APP_PASSWORD: ${{ inputs.bitbucket_app_password }}
     PRISMA_API_URL: ${{ inputs.prisma-api-url }}
+    CKV_VALIDATE_SECRETS: ${{ inputs.ckv_validate_secrets }}
     
