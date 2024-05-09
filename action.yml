@@ -124,6 +124,9 @@ inputs:
   repo_root_for_plan_enrichment:
     description: 'Directory containing the hcl code used to generate a given plan file. Use with `file`'
     required: false
+  deep_analysis:
+    description: 'Combine the TF Plan and TF graphs to make additional connections. Must be used with `repo_root_for_plan_enrichment`'
+    required: false
   policy_metadata_filter:
     description: 'comma separated key:value string to filter policies based on Prisma Cloud policy metadata. See https://prisma.pan.dev/api/cloud/cspm/policy#operation/get-policy-filters-and-options for information on allowed filters. Format: policy.label=test,cloud.type=aws'
     required: false
@@ -177,6 +180,7 @@ runs:
     - ${{ inputs.dockerfile_path }}
     - ${{ inputs.var_file }}
     - ${{ inputs.repo_root_for_plan_enrichment }}
+    - ${{ inputs.deep_analysis }}
     - ${{ inputs.policy_metadata_filter }}
     - ${{ inputs.skip_path }}
     - ${{ inputs.skip_cve_package }}
