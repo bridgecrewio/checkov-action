@@ -128,7 +128,10 @@ inputs:
     description: 'Combine the TF Plan and TF graphs to make additional connections. Must be used with `repo_root_for_plan_enrichment`'
     required: false
   policy_metadata_filter:
-    description: 'comma separated key:value string to filter policies based on Prisma Cloud policy metadata. See https://prisma.pan.dev/api/cloud/cspm/policy#operation/get-policy-filters-and-options for information on allowed filters. Format: policy.label=test,cloud.type=aws'
+    description: 'Comma separated key:value string to filter policies based on Prisma Cloud policy metadata. See https://prisma.pan.dev/api/cloud/cspm/policy#operation/get-policy-filters-and-options for information on allowed filters. Format: policy.label=test,cloud.type=aws'
+    required: false
+  policy_metadata_filter_exception:
+    description: 'Comma separated key:value string to exclude filtered policies based on Prisma Cloud policy metadata. When used with --policy-metadata-filter, the exceptions override any policies selected asa result of the --policy-metadata-filter flag.See https://prisma.pan.dev/api/cloud/cspm/policy#operation/get-policy-filters-and-options for information on allowed filters. Format: policy.label=test,cloud.type=aws'
     required: false
   skip_path:
     description: 'Path (file or directory) to skip, using regular expression logic, relative to the current working directory. Word boundaries are not implicit; i.e., specifying "dir1" will skip any directory or subdirectory named "dir1". Ignored with -f. (comma separated)'
@@ -182,6 +185,7 @@ runs:
     - ${{ inputs.repo_root_for_plan_enrichment }}
     - ${{ inputs.deep_analysis }}
     - ${{ inputs.policy_metadata_filter }}
+    - ${{ inputs.policy_metadata_filter_exception }}
     - ${{ inputs.skip_path }}
     - ${{ inputs.skip_cve_package }}
     - ${{ inputs.skip_download }}
