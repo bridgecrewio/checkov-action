@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8  # v3
         with:
           fetch-depth: '0'
+          token: ${{ secrets.GH_PAT_SECRET_2 }}
 
       - name: update-checkov-version
         id: checkov_version
@@ -28,13 +29,13 @@ jobs:
         uses: anothrNick/github-tag-action@1ffbb2e04bd950cffea99066469cb16d69a7887e  # v1
         if: steps.git_auto_commit.outputs.changes_detected == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_SECRET_2 }}
           WITH_V: true
 
       - name: version-tag-major
         if: steps.git_auto_commit.outputs.changes_detected == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_SECRET_2 }}
         run: |
           git fetch --tags
           tagFmt="^v?[0-9]+\.[0-9]+\.[0-9]+$"
