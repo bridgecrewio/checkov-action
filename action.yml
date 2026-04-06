@@ -154,42 +154,7 @@ branding:
   color: 'purple'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bridgecrewio/checkov:3.2.513'
-  args:
-    - ${{ inputs.file }}
-    - ${{ inputs.directory }}
-    - ${{ inputs.check }}
-    - ${{ inputs.skip_check }}
-    - ${{ inputs.compact }}
-    - ${{ inputs.quiet }}
-    - ${{ inputs.soft_fail }}
-    - ${{ inputs.output_bc_ids }}
-    - ${{ inputs.use_enforcement_rules }}
-    - ${{ inputs.skip_results_upload }}
-    - ${{ inputs.framework }}
-    - ${{ inputs.skip_framework }}
-    - ${{ inputs.external_checks_dirs }}
-    - ${{ inputs.external_checks_repos }}
-    - ${{ inputs.output_format }}
-    - ${{ inputs.output_file_path }}
-    - ${{ inputs.download_external_modules }}
-    - ${{ inputs.enable_secrets_scan_all_files }}
-    - ${{ inputs.log_level }}
-    - ${{ inputs.config_file }}
-    - ${{ inputs.baseline }}
-    - ${{ inputs.hard_fail_on }}
-    - ${{ inputs.soft_fail_on }}
-    - ${{ inputs.docker_image }}
-    - ${{ inputs.dockerfile_path }}
-    - ${{ inputs.var_file }}
-    - ${{ inputs.repo_root_for_plan_enrichment }}
-    - ${{ inputs.deep_analysis }}
-    - ${{ inputs.policy_metadata_filter }}
-    - ${{ inputs.policy_metadata_filter_exception }}
-    - ${{ inputs.skip_path }}
-    - ${{ inputs.skip_cve_package }}
-    - ${{ inputs.skip_download }}
-    - "--user ${{ inputs.container_user }}"
+  image: 'Dockerfile'
   env:
     API_KEY_VARIABLE: ${{ inputs.api-key }}
     GITHUB_PAT: ${{ inputs.github_pat }}
@@ -203,4 +168,3 @@ runs:
     BITBUCKET_APP_PASSWORD: ${{ inputs.bitbucket_app_password }}
     PRISMA_API_URL: ${{ inputs.prisma-api-url }}
     CKV_VALIDATE_SECRETS: ${{ inputs.ckv_validate_secrets }}
-    
