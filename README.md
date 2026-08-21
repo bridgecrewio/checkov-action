@@ -84,6 +84,7 @@ jobs:
           framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
           skip_framework: terraform # optional: skip a specific infrastructure {cloudformation,terraform,kubernetes,all}
           skip_cve_package: CVE_2019_8331 # optional: skip a specific CVE package in SCA scans, can be comma separated list
+          skip_path: path/this_path # optional: Path (file or directory) to skip
           output_format: sarif # optional: the output format, one of: cli, json, junitxml, github_failed_only, or sarif. Default: sarif
           output_file_path: reports/results.sarif # folder and name of results file
           output_bc_ids: true # optional: output Bridgecrew platform IDs instead of checkov IDs
